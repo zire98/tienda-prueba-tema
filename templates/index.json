@@ -15,7 +15,11 @@
         "heading": {
           "type": "heading",
           "settings": {
+<<<<<<< HEAD
             "heading": "Browse our latest products local2 changes",
+=======
+            "heading": "Browse our latest products live changes",
+>>>>>>> 2d1b5b21864018edf99b3fceb686bcbafb70ca81
             "heading_size": "h0"
           }
         },
