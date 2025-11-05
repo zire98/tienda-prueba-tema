@@ -1,0 +1,39 @@
+{% assign products = collection.products %}
+{% assign products_title = products | map: 'title' | reverse %}
+
+{% for product_title in products_title %}
+  <p>{{ product_title }}</p>
+{% endfor %}
+
+<p>{{ products_title | join: '-' }}</p>
+
+{% comment %}
+  <p>{{ products_title.first }}</p>
+  <p>{{ products_title.last }}</p>
+  <p>{{ products_title.size }}</p>
+{% endcomment %}
+
+{% assign price_sorted_items = products | sort: 'price' %}
+{% for product in price_sorted_items %}
+  <p>{{ product.title }} - {{ product.price | money }}</p>
+{% endfor %}
+
+{% assign all_prices = products | map: 'price' | sort %}
+{% for price in all_prices %}
+  <p>{{ price | money }}</p>
+{% endfor %}
+
+{% assign sum_prices = all_prices | sum %}
+<p>El precio total de todos los productos es de {{ sum_prices | money }}</p>
+
+{% comment %} Esto si no pongo el first devuelve array{% endcomment %}
+{% assign snow_board = products | where: 'title', 'Snowboard quicksilver' | first %}
+<p>{{ snow_board.title }} - {{ snow_board.price | money }}</p>
+
+{% assign tags = '' %}
+{% for product in products %}
+  {% for tag in product.tags %}
+    {% assign tags = tags | append: tag | append: ' ' %}
+  {% endfor %}
+{% endfor %}
+<p>{{ tags | split: ' ' | uniq | join: ' ' }}</p>
