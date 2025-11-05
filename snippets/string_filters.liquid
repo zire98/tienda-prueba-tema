@@ -1,0 +1,42 @@
+{% assign my_string = 'hello world' %}
+{% assign other_string = ' extra text' %}
+<p>{{ my_string | upcase }}</p>
+<p>{{ my_string | downcase }}</p>
+<p>{{ my_string | capitalize }}</p>
+<p>{{ my_string | append: ' anadido' }}</p>
+<p>{{ my_string | append: other_string | capitalize }}</p>
+
+{% assign string_whitespace = ' hello this has whitespace   ' %}
+<p>{{ string_whitespace | strip | append: '!' }}</p>
+
+{% assign my_htmltext = "<p style='color:red'>Hello some extra text</p>" %}
+{{ my_htmltext | strip_html }}
+
+{% assign my_longstring = 'This is a very long text that will be trimed' %}
+<p>{{ my_longstring | truncate: 20, '?' }}</p>
+<p>{{ my_longstring | truncatewords: 4 }}</p>
+
+{{ my_htmltext | strip_html | truncate: 20 }}
+
+{% comment %}
+  {% assign multiline_text = '
+      This is the first line
+      This is the second line
+      this is the third line
+      '
+    | newline_to_br
+  %}
+{% endcomment %}
+
+<p>{{ multiline_text }}</p>
+
+{% assign my_text = 'Hello some extra text some extra text' %}
+<p>{{ my_text | replace: 'text', 'string' }}</p>
+<p>{{ my_text | remove: 'text' }}</p>
+
+{% assign languages = 'html|orange,css|blue,javascript|yellow' | split: ',' %}
+{% for language in languages %}
+  {% assign language_name = language | split: '|' | first %}
+  {% assign language_color = language | split: '|' | last %}
+  <p style="color:{{ language_color }}">{{ language_name }}</p>
+{% endfor %}
