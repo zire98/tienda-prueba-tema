@@ -1,0 +1,44 @@
+{% comment %} Filters {% endcomment %}
+{% assign my_number = '11' %}
+
+{% comment %}
+  Asi se hace directamente si es numero
+    {% assign my_new_number = my_number | plus: 5 %}
+    {% assign my_new_number = my_number | minus: 5 %}
+    {% assign my_new_number = my_number | times: 5 %}
+    {% assign my_new_number = my_number | divided_by: 5 %}
+{% endcomment %}
+
+{% comment %} Asi se parsea{% endcomment %}
+{% assign my_new_number = my_number | plus: 0 %}
+
+{% if my_new_number > 5 %}
+  <p>My number is greater than 5</p>
+{% endif %}
+
+{% comment %}
+  Esto no se puede hacer directamente, hay que usar variable intermediaria
+    {% if my_new_number | modulo: 2 == 0 %}
+{% endcomment %}
+{% assign module_number = my_new_number | modulo: 2 %}
+{% if module_number == 0 %}
+  <p>Even</p>
+{% else %}
+  <p>Odd</p>
+{% endif %}
+
+{% assign my_abs_number = -11 | abs %}
+<p>{{ my_abs_number }}</p>
+
+{% assign my_round_number = 10.4 | round %}
+<p>{{ my_round_number }}</p>
+
+{% assign my_floor_number = 10.4 | floor %}
+<p>{{ my_floor_number }}</p>
+
+{% assign my_ceil_number = 10.4 | ceil %}
+<p>{{ my_ceil_number }}</p>
+
+{% assign my_capped_number = 100 %}
+<p>{{ my_capped_number | at_most: 80 }}</p>
+<p>{{ my_capped_number | at_least: 70 }}</p>
